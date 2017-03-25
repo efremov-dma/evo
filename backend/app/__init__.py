@@ -11,3 +11,7 @@ db.init_app(app)
 Migrate(app, db)
 
 from . import departments
+from . import employees
+from . import employments
+from . import positions
+from . import vacancies
