@@ -1,8 +1,12 @@
+from uuid import UUID
+
 from flask import request
 from flask.views import MethodView
 
 from app import db
 from app import response
+from app.errors.errors import Error
+from app.errors.exceptions import NotFound, BadRequest
 from app.models import BaseModel
 from app.schemas import ModelSchema
 
@@ -15,8 +19,7 @@ class BaseView(MethodView):
         try:
             json = request.get_json()
         except Exception as e:
-            # todo: custom API bad request exception.
-            raise Exception('JSON decode exception.')
+            raise BadRequest(Error(detail=str(e)))
         self.schema().validate(json, partial=partial)
 
 
@@ -24,7 +27,12 @@ class ReadUpdateDeleteView(BaseView):
     methods = ['GET', 'PUT', 'DELETE']
 
     def get(self, id):
-        return response.success(data=self.model.get_or_404(id), schema=self.schema)
+        try:
+            id = UUID(id)
+        except ValueError:
+            raise NotFound()
+
+        return response.success(data=self.model.get_or_404(id.hex), schema=self.schema)
 
     def put(self, id):
         self._validate_schema(partial=True)
