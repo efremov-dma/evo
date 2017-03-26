@@ -14,5 +14,5 @@ class Employment(BaseModel):
     employee = relationship('Employee', foreign_keys=employee_id, back_populates='employments')
     position_id = db.Column(UUID, db.ForeignKey('positions.id'))
     position = relationship('Position')
-    start_date = db.Column(db.DateTime(timezone=True), nullable=False)
-    end_date = db.Column(db.DateTime(timezone=True), nullable=True)
+    start_date = db.Column(db.Date(), nullable=False)
+    end_date = db.Column(db.Date(), nullable=True)
