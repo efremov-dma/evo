@@ -10,6 +10,7 @@ class Department(BaseModel):
 
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
-    vacancies = relationship('Vacancy', back_populates='department', cascade='all, delete-orphan')
     head_id = db.Column(UUID, db.ForeignKey('employees.id'))
-    head = relationship('Employee', back_populates='department')
+    head = relationship('Employee')
+    employments = relationship('Employment', back_populates='department')
+    vacancies = relationship('Vacancy', back_populates='department', cascade='all, delete-orphan')
