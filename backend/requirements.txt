@@ -9,6 +9,7 @@ itsdangerous==0.24
 Jinja2==2.9.5
 Mako==1.0.6
 MarkupSafe==1.0
+marshmallow==2.13.4
 packaging==16.8
 psycopg2==2.7.1
 pyparsing==2.2.0
