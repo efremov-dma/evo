@@ -15,3 +15,7 @@ from . import employees
 from . import employments
 from . import positions
 from . import vacancies
+
+from app.departments import blueprint as department_blueprint
+
+app.register_blueprint(department_blueprint)
