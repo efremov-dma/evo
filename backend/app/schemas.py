@@ -1,5 +1,8 @@
 from marshmallow import Schema, fields
 
+from app.errors.errors import InvalidAttribute
+from app.errors.exceptions import BadRequest
+
 
 class ModelSchema(Schema):
     id = fields.Str(dump_only=True)
@@ -7,16 +10,13 @@ class ModelSchema(Schema):
     updated_at = fields.DateTime(dump_only=True)
 
     def validate(self, data, many=None, partial=None):
-        """
-        :param many:
-        :param data:
-        :param bool|tuple partial: Whether to ignore missing fields. If its value is an iterable,
-            only missing fields listed in that iterable will be ignored.
-        """
         errors = super().validate(data, many=many, partial=partial)
         if errors:
-            # todo: custom API bad request exception.
-            raise Exception('Validation error.' + str(errors))
+            exception = BadRequest()
+            for attr, messages in errors.items():
+                for msg in messages:
+                    exception.add_error(InvalidAttribute(source=attr, detail=msg))
+            raise exception
 
 
 class ErrorSchema(Schema):

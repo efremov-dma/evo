@@ -10,6 +10,7 @@ db = SQLAlchemy()
 db.init_app(app)
 Migrate(app, db)
 
+from . import errors
 from . import departments
 from . import employees
 from . import employments
