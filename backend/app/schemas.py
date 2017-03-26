@@ -16,7 +16,7 @@ class ModelSchema(Schema):
         errors = super().validate(data, many=many, partial=partial)
         if errors:
             # todo: custom API bad request exception.
-            raise Exception('Validation error.')
+            raise Exception('Validation error.' + str(errors))
 
 
 class ErrorSchema(Schema):
