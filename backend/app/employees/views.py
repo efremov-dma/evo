@@ -1,13 +1,13 @@
-from app.departments.models import Department
-from app.departments.schemas import DepartmentSchema
+from app.employees.models import Employee
+from app.employees.schemas import EmployeeSchema
 from app.views import ListCreateView, ReadUpdateDeleteView
 
 
-class DepartmentList(ListCreateView):
-    model = Department
-    schema = DepartmentSchema
+class EmployeeList(ListCreateView):
+    model = Employee
+    schema = EmployeeSchema
 
 
-class DepartmentSingle(ReadUpdateDeleteView):
-    model = Department
-    schema = DepartmentSchema
+class EmployeeSingle(ReadUpdateDeleteView):
+    model = Employee
+    schema = EmployeeSchema
