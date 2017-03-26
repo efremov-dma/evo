@@ -1,5 +1,5 @@
-from app.departments import blueprint
-from app.departments.views import DepartmentList, DepartmentSingle
+from app.employees import blueprint
+from app.employees.views import EmployeeList, EmployeeSingle
 
-blueprint.add_url_rule('/', view_func=DepartmentList.as_view('list'))
-blueprint.add_url_rule('/<id>', view_func=DepartmentSingle.as_view('single'))
+blueprint.add_url_rule('/', view_func=EmployeeList.as_view('list'))
+blueprint.add_url_rule('/<id>', view_func=EmployeeSingle.as_view('single'))
