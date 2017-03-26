@@ -11,6 +11,17 @@ from app.models import BaseModel
 from app.schemas import ModelSchema
 
 
+def validate_id(func):
+    def wrapper(self, id):
+        try:
+            UUID(id)
+        except ValueError:
+            raise NotFound()
+        return func(self, id)
+
+    return wrapper
+
+
 class BaseView(MethodView):
     model = None  # type: BaseModel
     schema = None  # type: ModelSchema
@@ -26,14 +37,11 @@ class BaseView(MethodView):
 class ReadUpdateDeleteView(BaseView):
     methods = ['GET', 'PUT', 'DELETE']
 
+    @validate_id
     def get(self, id):
-        try:
-            id = UUID(id)
-        except ValueError:
-            raise NotFound()
+        return response.success(data=self.model.get_or_404(id), schema=self.schema)
 
-        return response.success(data=self.model.get_or_404(id.hex), schema=self.schema)
-
+    @validate_id
     def put(self, id):
         self._validate_schema(partial=True)
 
@@ -43,6 +51,7 @@ class ReadUpdateDeleteView(BaseView):
 
         return response.success(data=instance, schema=self.schema)
 
+    @validate_id
     def delete(self, id):
         self.model.get_or_404(id).delete()
         db.session.commit()
