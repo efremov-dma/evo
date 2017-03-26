@@ -2,7 +2,7 @@ from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../../frontend/dist')
 
 app.config.from_object('app.settings.base')
 
@@ -16,6 +16,7 @@ from . import employees
 from . import employments
 from . import positions
 from . import vacancies
+from . import views
 
 from app.departments import blueprint as department_blueprint
 from app.employees import blueprint as employee_blueprint

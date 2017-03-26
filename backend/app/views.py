@@ -3,7 +3,7 @@ from uuid import UUID
 from flask import request
 from flask.views import MethodView
 
-from app import db
+from app import db, app
 from app import response
 from app.errors.errors import Error
 from app.errors.exceptions import NotFound, BadRequest
@@ -74,3 +74,9 @@ class ListCreateView(BaseView):
         db.session.commit()
 
         return response.success(data=instance, schema=self.schema)
+
+
+@app.route('/', methods=['GET'])
+@app.route('/<path:path>', methods=['GET'])
+def home_page(path=None):
+    return app.send_static_file('index.html')
