@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {RequestService} from '../../common/services/request.service';
 import {Employment} from '../models/employment';
+import {URLSearchParams} from '@angular/http';
 
 @Injectable()
 export class EmploymentService {
@@ -11,12 +12,18 @@ export class EmploymentService {
         private requestSrv: RequestService
     ) {}
 
-    list(): Promise<Employment[]> {
+    list(employeeId?: string): Promise<Employment[]> {
         const url = `${this.baseUrl}/`;
+
+        let params = new URLSearchParams();
+
+        if (employeeId) {
+            params.append('employee_id', employeeId);
+        }
 
         return new Promise((resolve, reject) => {
             this.requestSrv
-                .get(url)
+                .get(url, params)
                 .then(response => resolve(response.map((data: any) => Employment.newFromResponse(data))))
                 .catch(errors => reject(errors));
         });

@@ -14,6 +14,7 @@ import {DepartmentSingleComponent} from './departments/components/department-sin
 import {EmployeeService} from './employees/services/employee.service';
 import {EmployeeSingleComponent} from './employees/components/employee-single/employee-single.component';
 import {EmploymentService} from './employments/services/employment.service';
+import {EmploymentHistoryComponent} from './employments/employment-history/employment-history.component';
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import {EmploymentService} from './employments/services/employment.service';
         DepartmentListComponent,
         DepartmentSingleComponent,
         EmployeeSingleComponent,
+        EmploymentHistoryComponent,
     ],
     providers: [
         DepartmentService,

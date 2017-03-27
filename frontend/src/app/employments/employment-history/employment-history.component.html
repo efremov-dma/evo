@@ -1,0 +1,14 @@
+<h3>Employment History</h3>
+
+<div *ngIf="employments">
+    <ul *ngFor="let employment of employments">
+        <li>
+            {{ employment.position.name }}
+            in
+            <a [routerLink]="['/departments', employment.department.id]">
+                {{ employment.department.name }}
+            </a>
+            ({{ employment.startDate|date:'MM.y' }} - {{ (employment.endDate|date:'MM.y') || 'present' }})
+        </li>
+    </ul>
+</div>

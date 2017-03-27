@@ -24,7 +24,6 @@ export class EmployeeSingleComponent implements OnInit, OnDestroy {
 
     employee: Employee;
     currentEmployment: Employment;
-    employmentHistory: Employment[];
     sub: Subscription;
 
     constructor(
@@ -36,10 +35,7 @@ export class EmployeeSingleComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.initParams();
-        this.initEmployee().then(() => {
-            this.initCurrentEmployment();
-            this.initEmploymentHistory();
-        });
+        this.initEmployee().then(() => this.initCurrentEmployment());
     }
 
     private initParams() {
@@ -74,10 +70,6 @@ export class EmployeeSingleComponent implements OnInit, OnDestroy {
                     errors.forEach(error => this.msgSrv.error(error.detail));
                 });
         }
-    }
-
-    private initEmploymentHistory() {
-        // todo:
     }
 
     ngOnDestroy() {
