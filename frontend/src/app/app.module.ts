@@ -12,6 +12,7 @@ import {ROUTES} from './app.routes';
 import {RouterModule} from '@angular/router';
 import {DepartmentSingleComponent} from './departments/components/department-single/department-single.component';
 import {EmployeeService} from './employees/services/employee.service';
+import {EmployeeSingleComponent} from './employees/components/employee-single/employee-single.component';
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import {EmployeeService} from './employees/services/employee.service';
         AppComponent,
         DepartmentListComponent,
         DepartmentSingleComponent,
+        EmployeeSingleComponent,
     ],
     providers: [
         DepartmentService,
