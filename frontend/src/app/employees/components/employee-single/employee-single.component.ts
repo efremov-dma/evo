@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Employee} from '../../models/employee';
 import {Subscription} from 'rxjs';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {EmployeeService} from '../../services/employee.service';
 import {MessageService} from '../../../common/services/message.service';
 import {ResponseError} from '../../../common/models/errors';
@@ -28,6 +28,7 @@ export class EmployeeSingleComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
+        private router: Router,
         private employeeSrv: EmployeeService,
         private employmentSrv: EmploymentService,
         private msgSrv: MessageService
@@ -35,7 +36,9 @@ export class EmployeeSingleComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.initParams();
-        this.initEmployee().then(() => this.initCurrentEmployment());
+        this.initEmployee()
+            .then(() => this.initCurrentEmployment())
+            .catch(() => this.router.navigate(['/']));
     }
 
     private initParams() {

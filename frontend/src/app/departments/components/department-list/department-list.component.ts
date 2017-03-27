@@ -35,4 +35,18 @@ export class DepartmentListComponent implements OnInit {
             });
     }
 
+    deleteDepartment(department: Department) {
+        this.departmentSrv
+            .delete(department.id)
+            .then(() => {
+                this.msgSrv.success(`Department ${department.name} successfully deleted.`);
+                let index = this.departments.indexOf(department);
+                if (index != -1) {
+                    this.departments.splice(index, 1);
+                }
+            })
+            .catch((errors: ResponseError[]) => {
+                errors.forEach(error => this.msgSrv.error(error.detail))
+            });
+    }
 }

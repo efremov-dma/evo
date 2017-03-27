@@ -33,4 +33,25 @@ export class DepartmentService {
         });
     }
 
+    post(data: any): Promise<Department> {
+        const url = `${this.baseUrl}/`;
+
+        return new Promise((resolve, reject) => {
+            this.requestSrv
+                .post(url, data)
+                .then(response => resolve(Department.newFromResponse(response)))
+                .catch(errors => reject(errors));
+        });
+    }
+
+    delete(id: string): Promise<Department> {
+        const url = `${this.baseUrl}/${id}`;
+
+        return new Promise((resolve, reject) => {
+            this.requestSrv
+                .delete(url)
+                .then(response => resolve(response))
+                .catch(errors => reject(errors));
+        });
+    }
 }

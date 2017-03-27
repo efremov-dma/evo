@@ -2,6 +2,7 @@ import {Routes} from '@angular/router';
 import {DepartmentListComponent} from './departments/components/department-list/department-list.component';
 import {DepartmentSingleComponent} from './departments/components/department-single/department-single.component';
 import {EmployeeSingleComponent} from './employees/components/employee-single/employee-single.component';
+import {DepartmentCreateComponent} from './departments/components/department-create/department-create.component';
 
 export const ROUTES: Routes = [
     {path: '', component: DepartmentListComponent},
@@ -9,6 +10,7 @@ export const ROUTES: Routes = [
     // Departments
     {path: 'departments', children: [
         {path: '', component: DepartmentListComponent},
+        {path: 'new', component: DepartmentCreateComponent},
         {path: ':departmentId', children: [
             {path: '', component: DepartmentSingleComponent}
         ]}

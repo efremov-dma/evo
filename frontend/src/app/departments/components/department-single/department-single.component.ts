@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from "rxjs";
 import {MessageService} from '../../../common/services/message.service';
 import {DepartmentService} from '../../services/department.service';
@@ -28,6 +28,7 @@ export class DepartmentSingleComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
+        private router: Router,
         private departmentSrv: DepartmentService,
         private employeeSrv: EmployeeService,
         private msgSrv: MessageService
@@ -35,7 +36,9 @@ export class DepartmentSingleComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.initParams();
-        this.initDepartment().then(() => this.initDepartmentHead());
+        this.initDepartment()
+            .then(() => this.initDepartmentHead())
+            .catch(() => this.router.navigate(['/']));
     }
 
     private initParams() {

@@ -15,16 +15,23 @@ import {EmployeeService} from './employees/services/employee.service';
 import {EmployeeSingleComponent} from './employees/components/employee-single/employee-single.component';
 import {EmploymentService} from './employments/services/employment.service';
 import {EmploymentHistoryComponent} from './employments/employment-history/employment-history.component';
+import {DepartmentCreateComponent} from './departments/components/department-create/department-create.component';
+import {DepartmentCreateForm} from './departments/forms/department-create/department-create.form';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpModule,
+        FormsModule,
+        ReactiveFormsModule,
         RouterModule.forRoot(ROUTES, {useHash: false}),
         ToastyModule.forRoot(),
     ],
     declarations: [
         AppComponent,
+        DepartmentCreateComponent,
+        DepartmentCreateForm,
         DepartmentListComponent,
         DepartmentSingleComponent,
         EmployeeSingleComponent,
