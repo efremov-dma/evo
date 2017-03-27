@@ -6,10 +6,11 @@ from marshmallow import validates
 from app.employees.models import Employee
 from app.errors.exceptions import NotFound
 from app.schemas import ModelSchema
+from app.validators import not_blank
 
 
 class DepartmentSchema(ModelSchema):
-    name = fields.Str(required=True, validate=[validate.Length(max=255)])
+    name = fields.Str(required=True, validate=[not_blank, validate.Length(max=255)])
     description = fields.Str(allow_none=True)
     head_id = fields.UUID(allow_none=True)
 
