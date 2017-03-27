@@ -1,0 +1,17 @@
+<main class="container">
+
+    <h2>Departments List</h2>
+
+    <div *ngIf="departments" class="departments">
+        <div *ngFor="let department of departments" class="department row">
+            <div class="name col-xs-8">
+                <a href="#">{{ department.name }}</a>
+            </div>
+            <div class="actions col-xs-4 text-right">
+                <a href="#" class="edit btn-xs btn-default">Edit</a>
+                <a href="#" class="remove btn-xs btn-danger">Remove</a>
+            </div>
+        </div>
+    </div>
+
+</main>

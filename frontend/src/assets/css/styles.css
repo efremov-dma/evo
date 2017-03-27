@@ -1,0 +1,9 @@
+body,
+a {
+  color: rgb(29, 35, 38);
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}

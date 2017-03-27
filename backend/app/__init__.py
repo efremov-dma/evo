@@ -2,7 +2,7 @@ from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__, static_folder='../../frontend/dist')
+app = Flask(__name__, static_url_path='/dist', static_folder='../../frontend/dist')
 
 app.config.from_object('app.settings.base')
 
