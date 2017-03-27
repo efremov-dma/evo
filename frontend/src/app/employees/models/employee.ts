@@ -6,6 +6,7 @@ export class Employee {
     public birthDate: string;
     public email: string;
     public phone: string;
+    public currentEmploymentID: string;
 
     constructor(id: string, attributes: any) {
         this.id = id;
@@ -14,6 +15,7 @@ export class Employee {
         this.birthDate = attributes.birthDate;
         this.email = attributes.email;
         this.phone = attributes.phone;
+        this.currentEmploymentID = attributes.currentEmploymentID;
     }
 
     public static newFromResponse(data: any) {
@@ -23,6 +25,7 @@ export class Employee {
             birthDate: data.birth_date,
             email: data.email,
             phone: data.phone,
+            currentEmploymentID: data.current_employment_id,
         });
     }
 

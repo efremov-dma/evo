@@ -13,6 +13,7 @@ import {RouterModule} from '@angular/router';
 import {DepartmentSingleComponent} from './departments/components/department-single/department-single.component';
 import {EmployeeService} from './employees/services/employee.service';
 import {EmployeeSingleComponent} from './employees/components/employee-single/employee-single.component';
+import {EmploymentService} from './employments/services/employment.service';
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import {EmployeeSingleComponent} from './employees/components/employee-single/em
     providers: [
         DepartmentService,
         EmployeeService,
+        EmploymentService,
         MessageService,
         RequestService,
         ResponseService,

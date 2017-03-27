@@ -25,5 +25,19 @@
         <div class="col-xs-8">
             {{employee.birthDate}}
         </div>
+
+        <!-- Current Employment -->
+        <div *ngIf="currentEmployment">
+            <div class="col-xs-4">
+                Position:
+            </div>
+            <div class="col-xs-8">
+                {{ currentEmployment.position.name }}
+                in
+                <a [routerLink]="['/departments', currentEmployment.department.id]">
+                    {{ currentEmployment.department.name }}
+                </a>
+            </div>
+        </div>
     </div>
 </div>
