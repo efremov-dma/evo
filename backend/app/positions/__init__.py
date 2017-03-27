@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-blueprint = Blueprint('positions', __name__, url_prefix='/positions')
+blueprint = Blueprint('positions', __name__, url_prefix='/api/positions')
 
 from . import models
 from . import urls

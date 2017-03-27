@@ -1,33 +1,34 @@
 import {Injectable} from '@angular/core';
 import {RequestService} from '../../common/services/request.service';
-import {Department} from '../models/department';
+import {Employee} from '../models/employee';
 
 @Injectable()
 export class DepartmentService {
 
-    private baseUrl = '/departments';
+    private baseUrl = '/employees';
 
-    constructor(private requestSrv: RequestService) {
-    }
+    constructor(
+        private requestSrv: RequestService
+    ) {}
 
-    list(): Promise<Department[]> {
+    list(): Promise<Employee[]> {
         const url = `${this.baseUrl}/`;
 
         return new Promise((resolve, reject) => {
             this.requestSrv
                 .get(url)
-                .then(response => resolve(response.map((data: any) => Department.newFromResponse(data))))
+                .then(response => resolve(response.map((data: any) => Employee.newFromResponse(data))))
                 .catch(errors => reject(errors));
         });
     }
 
-    get(id: number): Promise<Department> {
+    get(id: string): Promise<Employee> {
         const url = `${this.baseUrl}/${id}`;
 
         return new Promise((resolve, reject) => {
             this.requestSrv
                 .get(url)
-                .then(response => resolve(Department.newFromResponse(response)))
+                .then(response => resolve(Employee.newFromResponse(response)))
                 .catch(errors => reject(errors));
         });
     }
