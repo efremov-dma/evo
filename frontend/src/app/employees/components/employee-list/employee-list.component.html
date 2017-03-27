@@ -1,0 +1,15 @@
+<h2>Department Employees</h2>
+
+<div *ngIf="employees" class="list">
+    <div *ngFor="let employee of employees" class="item row">
+        <div class="col-xs-8">
+            <a [routerLink]="['/employees', employee.id]">
+                {{ employee.firstName }} {{ employee.lastName }}
+            </a>
+        </div>
+        <div class="col-xs-4 text-right">
+            <a [routerLink]="['/employees', employee.id]" class="btn btn-xs btn-default">Edit</a>
+            <a (click)="dismissEmployee(employee)" class="btn btn-xs btn-danger">Dismiss</a>
+        </div>
+    </div>
+</div>

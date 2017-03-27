@@ -17,8 +17,11 @@
     <!-- Vacancies -->
 
     <div class="actions">
+        <a [routerLink]="['/departments', department.id, 'employees']" class="btn btn-default">
+            Employees
+        </a>
         <a [routerLink]="['/departments', department.id, 'edit']" class="btn btn-default">
-            Edit Department
+            Edit
         </a>
     </div>
 </div>

@@ -20,6 +20,7 @@ import {DepartmentCreateForm} from './departments/forms/department-create/depart
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DepartmentEditComponent} from './departments/components/department-edit/department-edit.component';
 import {DepartmentEditForm} from './departments/forms/department-edit/department-edit.form';
+import {EmployeeListComponent} from './employees/components/employee-list/employee-list.component';
 
 @NgModule({
     imports: [
@@ -38,6 +39,7 @@ import {DepartmentEditForm} from './departments/forms/department-edit/department
         DepartmentEditForm,
         DepartmentListComponent,
         DepartmentSingleComponent,
+        EmployeeListComponent,
         EmployeeSingleComponent,
         EmploymentHistoryComponent,
     ],

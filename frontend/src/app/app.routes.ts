@@ -4,6 +4,7 @@ import {DepartmentSingleComponent} from './departments/components/department-sin
 import {EmployeeSingleComponent} from './employees/components/employee-single/employee-single.component';
 import {DepartmentCreateComponent} from './departments/components/department-create/department-create.component';
 import {DepartmentEditComponent} from './departments/components/department-edit/department-edit.component';
+import {EmployeeListComponent} from './employees/components/employee-list/employee-list.component';
 
 export const ROUTES: Routes = [
     {path: '', component: DepartmentListComponent},
@@ -15,6 +16,7 @@ export const ROUTES: Routes = [
         {path: ':departmentId', children: [
             {path: '', component: DepartmentSingleComponent},
             {path: 'edit', component: DepartmentEditComponent},
+            {path: 'employees', component: EmployeeListComponent},
         ]}
     ]},
 
