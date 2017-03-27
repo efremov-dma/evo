@@ -4,9 +4,12 @@ from marshmallow import validates
 from marshmallow import validates_schema
 
 from app.departments.models import Department
+from app.departments.schemas import DepartmentSchema
 from app.employees.models import Employee
+from app.employees.schemas import EmployeeSchema
 from app.errors.exceptions import NotFound
 from app.positions.models import Position
+from app.positions.schemas import PositionSchema
 from app.schemas import ModelSchema
 
 
@@ -16,6 +19,9 @@ class EmploymentSchema(ModelSchema):
     position_id = fields.UUID(required=True)
     start_date = fields.Date(required=True)
     end_date = fields.Date(required=True, allow_none=True)
+    employee = fields.Nested(EmployeeSchema, dump_only=True)
+    position = fields.Nested(PositionSchema, dump_only=True)
+    department = fields.Nested(DepartmentSchema, dump_only=True)
 
     @validates_schema
     def validate_dates(self, data):
