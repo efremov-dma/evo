@@ -10,22 +10,24 @@
                 type="text">
     </div>
 
-    <!--&lt;!&ndash; Target &ndash;&gt;-->
-    <!--<div class="form-group">-->
-        <!--<label for="target">Target</label>-->
-        <!--<select-->
-                <!--class="form-control"-->
-                <!--formControlName="target_id"-->
-                <!--id='target'>-->
-            <!--<option value="">Choose target</option>-->
-            <!--<option-->
-                    <!--*ngFor="let target of targets"-->
-                    <!--[value]="target.id"-->
-                    <!--[selected]="target.id == event.targetId">-->
-                <!--{{target.name}}-->
-            <!--</option>-->
-        <!--</select>-->
-    <!--</div>-->
+    <!-- Target -->
+    <div class="form-group">
+        <label for="head">Head of Department</label>
+        <select
+                class="form-control"
+                formControlName="head_id"
+                id="head">
+            <option [ngValue]="null">
+                ---
+            </option>
+            <option
+                    *ngFor="let employee of employees"
+                    [ngValue]="employee.id"
+                    [selected]="employee.id == department.headId">
+                {{ employee.firstName }} {{ employee.lastName }}
+            </option>
+        </select>
+    </div>
 
     <!-- Description -->
     <div class="form-group">

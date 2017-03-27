@@ -6,6 +6,7 @@ import {Department} from '../../models/department';
 import {Subscription} from 'rxjs';
 import {Employee} from '../../../employees/models/employee';
 import {ResponseError} from '../../../common/models/errors';
+import {EmployeeService} from '../../../employees/services/employee.service';
 
 @Component({
     selector: 'department-edit',
@@ -22,18 +23,20 @@ export class DepartmentEditComponent implements OnInit, OnDestroy {
     };
 
     department: Department;
-    head: Employee;
+    employees: Employee[] = [];
     sub: Subscription;
 
     constructor(
         private route: ActivatedRoute,
         private departmentSrv: DepartmentService,
-        private msgSrv: MessageService,
+        private employeeSrv: EmployeeService,
+        private msgSrv: MessageService
     ) {}
 
     ngOnInit() {
         this.initParams();
         this.initDepartment();
+        this.initEmployees();
     }
 
     private initParams() {
@@ -48,6 +51,15 @@ export class DepartmentEditComponent implements OnInit, OnDestroy {
         this.departmentSrv
             .get(this.params.departmentId)
             .then(department => this.department = department)
+            .catch((errors: ResponseError[]) => {
+                errors.forEach(error => this.msgSrv.error(error.detail))
+            });
+    }
+
+    private initEmployees() {
+        this.employeeSrv
+            .list(this.params.departmentId)
+            .then(employees => this.employees = employees)
             .catch((errors: ResponseError[]) => {
                 errors.forEach(error => this.msgSrv.error(error.detail))
             });

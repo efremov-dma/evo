@@ -5,6 +5,7 @@ import {DepartmentService} from '../../services/department.service';
 import {Router} from '@angular/router';
 import {MessageService} from '../../../common/services/message.service';
 import {ResponseError} from '../../../common/models/errors';
+import {Employee} from '../../../employees/models/employee';
 
 
 @Component({
@@ -23,6 +24,9 @@ export class DepartmentEditForm implements OnInit {
     @Input()
     department: Department;
 
+    @Input()
+    employees: Employee[];
+
     form: FormGroup;
 
     constructor(
@@ -40,6 +44,7 @@ export class DepartmentEditForm implements OnInit {
         this.form = this.fb.group({
           name: [this.department.name],
           description: [this.department.description],
+          head_id: [this.department.headId],
         });
     }
 
