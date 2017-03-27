@@ -44,6 +44,17 @@ export class DepartmentService {
         });
     }
 
+    put(id: string, data: any): Promise<Department> {
+        const url = `${this.baseUrl}/${id}`;
+
+        return new Promise((resolve, reject) => {
+            this.requestSrv
+                .put(url, data)
+                .then(response => resolve(Department.newFromResponse(response)))
+                .catch(errors => reject(errors));
+        });
+    }
+
     delete(id: string): Promise<Department> {
         const url = `${this.baseUrl}/${id}`;
 

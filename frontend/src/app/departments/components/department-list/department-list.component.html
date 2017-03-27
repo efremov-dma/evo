@@ -8,7 +8,7 @@
             </a>
         </div>
         <div class="col-xs-4 text-right">
-            <a href="#" class="btn btn-xs btn-default">Edit</a>
+            <a [routerLink]="['/departments', department.id, 'edit']" class="btn btn-xs btn-default">Edit</a>
             <a (click)="deleteDepartment(department)" class="btn btn-xs btn-danger">Delete</a>
         </div>
     </div>

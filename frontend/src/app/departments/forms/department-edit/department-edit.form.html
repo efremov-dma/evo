@@ -1,0 +1,47 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+
+    <!-- Name -->
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input
+                class="form-control"
+                formControlName="name"
+                id="name"
+                type="text">
+    </div>
+
+    <!--&lt;!&ndash; Target &ndash;&gt;-->
+    <!--<div class="form-group">-->
+        <!--<label for="target">Target</label>-->
+        <!--<select-->
+                <!--class="form-control"-->
+                <!--formControlName="target_id"-->
+                <!--id='target'>-->
+            <!--<option value="">Choose target</option>-->
+            <!--<option-->
+                    <!--*ngFor="let target of targets"-->
+                    <!--[value]="target.id"-->
+                    <!--[selected]="target.id == event.targetId">-->
+                <!--{{target.name}}-->
+            <!--</option>-->
+        <!--</select>-->
+    <!--</div>-->
+
+    <!-- Description -->
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+                class="form-control"
+                formControlName="description"
+                id="description"
+                rows="10">
+            </textarea>
+    </div>
+
+    <!-- Submit -->
+    <button
+            class="btn btn-default"
+            type="submit">
+        Submit
+    </button>
+</form>

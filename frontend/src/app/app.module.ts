@@ -18,6 +18,8 @@ import {EmploymentHistoryComponent} from './employments/employment-history/emplo
 import {DepartmentCreateComponent} from './departments/components/department-create/department-create.component';
 import {DepartmentCreateForm} from './departments/forms/department-create/department-create.form';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DepartmentEditComponent} from './departments/components/department-edit/department-edit.component';
+import {DepartmentEditForm} from './departments/forms/department-edit/department-edit.form';
 
 @NgModule({
     imports: [
@@ -32,6 +34,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         AppComponent,
         DepartmentCreateComponent,
         DepartmentCreateForm,
+        DepartmentEditComponent,
+        DepartmentEditForm,
         DepartmentListComponent,
         DepartmentSingleComponent,
         EmployeeSingleComponent,
