@@ -3,7 +3,7 @@ import {RequestService} from '../../common/services/request.service';
 import {Employee} from '../models/employee';
 
 @Injectable()
-export class DepartmentService {
+export class EmployeeService {
 
     private baseUrl = '/employees';
 

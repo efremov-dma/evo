@@ -1,39 +1,79 @@
-import {Component} from '@angular/core';
-import {OnInit} from '@angular/core';
-import {Department} from '../../models/department';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Subscription} from "rxjs";
 import {MessageService} from '../../../common/services/message.service';
-import {DepartmentService} from '../../services/department.sevice';
+import {DepartmentService} from '../../services/department.service';
+import {Department} from '../../models/department';
 import {ResponseError} from '../../../common/models/errors';
+import {Employee} from '../../../employees/models/employee';
+import {EmployeeService} from '../../../employees/services/employee.service';
 
 
 @Component({
-    selector: 'department-list',
-    templateUrl: 'department-list.component.html',
+    templateUrl: 'department-single.component.html',
     styleUrls: [
-        'department-list.component.scss'
-    ]
+        'department-single.component.scss'
+    ],
 })
 
-export class DepartmentListComponent implements OnInit {
+export class DepartmentSingleComponent implements OnInit, OnDestroy {
 
-    departments: Department[];
+    params: {
+        departmentId: string
+    };
+
+    department: Department;
+    head: Employee;
+    sub: Subscription;
 
     constructor(
+        private route: ActivatedRoute,
         private departmentSrv: DepartmentService,
-        private msgSrv: MessageService,
+        private employeeSrv: EmployeeService,
+        private msgSrv: MessageService
     ) {}
 
-    ngOnInit(): void {
-        this.getDepartments();
+    ngOnInit() {
+        this.initParams();
+        this.initDepartment().then(() => this.initDepartmentHead());
     }
 
-    getDepartments(): void {
-        this.departmentSrv
-            .list()
-            .then(departments => this.departments = departments)
-            .catch((errors: ResponseError[]) => {
-                errors.forEach(error => this.msgSrv.error(error.detail))
-            });
+    private initParams() {
+        this.sub = this.route.params.subscribe(params => {
+            this.params = {
+                departmentId: params['departmentId']
+            };
+        });
+    }
+
+    private initDepartment() {
+        return new Promise((resolve, reject) => {
+            this.departmentSrv
+                .get(this.params.departmentId)
+                .then((department: Department) => {
+                    this.department = department;
+                    resolve();
+                })
+                .catch((errors: ResponseError[]) => {
+                    errors.forEach(error => this.msgSrv.error(error.detail));
+                    reject();
+                });
+        });
+    }
+
+    private initDepartmentHead() {
+        if (this.department.headId) {
+            this.employeeSrv
+                .get(this.department.headId)
+                .then((employee: Employee) => this.head = employee)
+                .catch((errors: ResponseError[]) => {
+                    errors.forEach(error => this.msgSrv.error(error.detail));
+                });
+        }
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
     }
 
 }

@@ -1,13 +1,19 @@
-<h2>Department List</h2>
+<div *ngIf="department">
+    <!-- Name -->
+    <h2>{{ department.name }}</h2>
 
-<div *ngIf="departments" class="departments">
-    <div *ngFor="let department of departments" class="department row">
-        <div class="name col-xs-8">
-            <a href="#">{{ department.name }}</a>
-        </div>
-        <div class="actions col-xs-4 text-right">
-            <a href="#" class="edit btn-xs btn-default">Edit</a>
-            <a href="#" class="remove btn-xs btn-danger">Remove</a>
+    <!-- Description -->
+    <div class="description">
+        {{ department.description }}
+    </div>
+
+    <!-- Head -->
+    <div *ngIf="head">
+        <h3>Head of Department:</h3>
+        <div>
+            {{ head.firstName }} {{ head.lastName }}
         </div>
     </div>
+
+    <!-- Vacancies -->
 </div>
