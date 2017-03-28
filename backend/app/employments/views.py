@@ -17,7 +17,7 @@ class EmploymentList(ListCreateView):
         if 'employee_id' in request.args:
             filters.append(self.model.employee_id == request.args['employee_id'])
 
-        data = self.model.query.order_by(desc(self.model.created_at)).filter(*filters)
+        data = self.model.query.order_by(desc(self.model.start_date)).filter(*filters)
 
         return response.success(data=data, schema=self.schema, many=True)
 
