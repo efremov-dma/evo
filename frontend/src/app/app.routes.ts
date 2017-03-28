@@ -13,6 +13,7 @@ import {VacancyCloseComponent} from './vacancies/components/vacancy-close/vacanc
 import {EmployeeEditComponent} from './employees/components/employee-edit/employee-edit.component';
 import {PositionListComponent} from './positions/components/position-list/position-list.component';
 import {PositionCreateComponent} from './positions/components/position-create/position-create.component';
+import {PositionEditComponent} from './positions/components/position-edit/position-edit.component';
 
 export const ROUTES: Routes = [
     {path: '', component: DepartmentListComponent},
@@ -57,7 +58,7 @@ export const ROUTES: Routes = [
         {path: '', component: PositionListComponent},
         {path: 'new', component: PositionCreateComponent},
         {path: ':positionId', children: [
-            // {path: 'edit', component: EmployeeEditComponent}
+            {path: 'edit', component: PositionEditComponent}
         ]}
     ]},
 
