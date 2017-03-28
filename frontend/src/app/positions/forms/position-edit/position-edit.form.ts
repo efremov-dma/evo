@@ -5,7 +5,6 @@ import {PositionService} from '../../services/position.service';
 import {Router} from '@angular/router';
 import {MessageService} from '../../../common/services/message.service';
 import {ResponseError} from '../../../common/models/errors';
-import {Employee} from '../../../employees/models/employee';
 
 
 @Component({
