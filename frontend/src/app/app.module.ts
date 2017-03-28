@@ -62,7 +62,7 @@ import {PositionCreateForm} from './positions/forms/position-create/position-cre
         EmployeeListComponent,
         EmployeeSingleComponent,
         EmploymentHistoryComponent,
-        PositionCreateCompqonent,
+        PositionCreateComponent,
         PositionCreateForm,
         PositionListComponent,
         VacancyListComponent,
