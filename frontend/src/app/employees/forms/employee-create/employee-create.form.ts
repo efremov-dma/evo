@@ -61,7 +61,7 @@ export class EmployeeCreateForm implements OnInit {
             .post(values)
             .then(() => {
                 this.msgSrv.success(`Vacancy successfully closed.`);
-                this.router.navigate(['/department', this.vacancy.department.id, 'vacancies']);
+                this.router.navigate(['/departments', this.vacancy.department.id, 'vacancies']);
             })
             .catch((errors: ResponseError[]) => {
                 errors.forEach(error => this.msgSrv.error(error.detail))
