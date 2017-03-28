@@ -51,4 +51,19 @@ export class VacancyListComponent implements OnInit {
                 errors.forEach(error => this.msgSrv.error(error.detail))
             });
     }
+
+    deleteVacancy(vacancy: Vacancy) {
+        this.vacancySrv
+            .delete(vacancy.id)
+            .then(() => {
+                this.msgSrv.success(`Vacancy successfully deleted.`);
+                let index = this.vacancies.indexOf(vacancy);
+                if (index != -1) {
+                    this.vacancies.splice(index, 1);
+                }
+            })
+            .catch((errors: ResponseError[]) => {
+                errors.forEach(error => this.msgSrv.error(error.detail))
+            });
+    }
 }

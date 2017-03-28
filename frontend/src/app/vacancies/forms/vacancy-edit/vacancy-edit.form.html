@@ -1,0 +1,36 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+
+    <!-- Position -->
+    <div class="form-group">
+        <label for="position">Position</label>
+        <select
+                class="form-control"
+                formControlName="position_id"
+                id="position">
+            <option
+                    *ngFor="let position of positions"
+                    [ngValue]="position.id">
+                    {{ position.name }}
+            </option>
+        </select>
+    </div>
+
+    <!-- Date Opening -->
+    <div class="form-group">
+        <label for="opening-date">Opening Date</label>
+        <datepicker
+                formControlName="opening_date"
+                [minDate]="minDate"
+                [showWeeks]="true"
+                [dateDisabled]="dateDisabled"
+                id="opening-date">
+        </datepicker>
+    </div>
+
+    <!-- Submit -->
+    <button
+            class="btn btn-default"
+            type="submit">
+        Submit
+    </button>
+</form>

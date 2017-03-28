@@ -50,5 +50,26 @@ export class VacancyService {
                 .catch(errors => reject(errors));
         });
     }
+    
+    put(id: string, data: any): Promise<Vacancy> {
+        const url = `${this.baseUrl}/${id}`;
 
+        return new Promise((resolve, reject) => {
+            this.requestSrv
+                .put(url, data)
+                .then(response => resolve(Vacancy.newFromResponse(response)))
+                .catch(errors => reject(errors));
+        });
+    }
+    
+    delete(id: string): Promise<Vacancy> {
+        const url = `${this.baseUrl}/${id}`;
+
+        return new Promise((resolve, reject) => {
+            this.requestSrv
+                .delete(url)
+                .then(response => resolve(response))
+                .catch(errors => reject(errors));
+        });
+    }
 }

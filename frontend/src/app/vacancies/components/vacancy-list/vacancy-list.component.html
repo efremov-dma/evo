@@ -8,8 +8,8 @@
             <!--</a>-->
         </div>
         <div class="col-xs-4 text-right">
-            <!--<a [routerLink]="['/vacancies', vacancy.id]" class="btn btn-xs btn-default">Edit</a>-->
-            <!--<a (click)="dismissEmployee(vacancy)" class="btn btn-xs btn-danger">Dismiss</a>-->
+            <a [routerLink]="['/vacancies', vacancy.id, 'edit']" class="btn btn-xs btn-default">Edit</a>
+            <a (click)="deleteVacancy(vacancy)" class="btn btn-xs btn-danger">Delete</a>
         </div>
     </div>
 </div>
