@@ -33,4 +33,15 @@ export class PositionService {
         });
     }
 
+    delete(id: string): Promise<Position> {
+        const url = `${this.baseUrl}/${id}`;
+
+        return new Promise((resolve, reject) => {
+            this.requestSrv
+                .delete(url)
+                .then(response => resolve(response))
+                .catch(errors => reject(errors));
+        });
+    }
+
 }

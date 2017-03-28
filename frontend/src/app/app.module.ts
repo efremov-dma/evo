@@ -34,6 +34,7 @@ import {VacancyCloseComponent} from './vacancies/components/vacancy-close/vacanc
 import {EmployeeCreateForm} from './employees/forms/employee-create/employee-create.form';
 import {EmployeeEditComponent} from './employees/components/employee-edit/employee-edit.component';
 import {EmployeeEditForm} from './employees/forms/employee-edit/employee-edit.form';
+import {PositionListComponent} from './positions/components/position-list/position-list.component';
 
 @NgModule({
     imports: [
@@ -59,6 +60,7 @@ import {EmployeeEditForm} from './employees/forms/employee-edit/employee-edit.fo
         EmployeeListComponent,
         EmployeeSingleComponent,
         EmploymentHistoryComponent,
+        PositionListComponent,
         VacancyListComponent,
         VacancyCreateComponent,
         VacancyCreateForm,

@@ -1,0 +1,20 @@
+<div class="actions">
+    <a [routerLink]="['/positions', 'new']" class="btn btn-default">
+        Create New Position
+    </a>
+</div>
+
+<h2>Position List</h2>
+
+<div *ngIf="positions" class="list">
+    <div *ngFor="let position of positions" class="item row">
+        <div class="col-xs-8">
+            <a [routerLink]="['/positions', position.id]">
+                {{ position.name }}
+            </a>
+        </div>
+        <div class="col-xs-4 text-right">
+            <a [routerLink]="['/positions', position.id, 'edit']" class="btn btn-xs btn-default">Edit</a>
+        </div>
+    </div>
+</div>
