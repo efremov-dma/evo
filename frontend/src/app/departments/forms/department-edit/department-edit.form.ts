@@ -54,7 +54,7 @@ export class DepartmentEditForm implements OnInit {
             .put(this.department.id, values)
             .then(department => {
                 this.msgSrv.success(`Department ${this.department.name} successfully updated.`);
-                this.router.navigate(['/departments'])
+                this.router.navigate(['/departments', this.department.id])
             })
             .catch((errors: ResponseError[]) => {
                 errors.forEach(error => this.msgSrv.error(error.detail))
