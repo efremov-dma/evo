@@ -19,7 +19,6 @@ class VacancyList(ListCreateView):
             filters.append(self.model.department_id == request.args['department_id'])
 
         if 'open' in request.args:
-            filters.append(self.model.opening_date > datetime.now())
             filters.append(self.model.closing_date == None)
 
         return response.success(data=self.model.query.filter(*filters), schema=self.schema, many=True)
