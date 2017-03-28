@@ -21,10 +21,17 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DepartmentEditComponent} from './departments/components/department-edit/department-edit.component';
 import {DepartmentEditForm} from './departments/forms/department-edit/department-edit.form';
 import {EmployeeListComponent} from './employees/components/employee-list/employee-list.component';
+import {VacancyListComponent} from './vacancies/components/vacancy-list/vacacny-list.component';
+import {VacancyService} from './vacancies/services/vacancy.service';
+import {VacancyCreateComponent} from './vacancies/components/vacancy-create/vacancy-create.component';
+import {VacancyCreateForm} from './vacancies/forms/vacancy-create/vacancy-create.form';
+import {PositionService} from './positions/services/position.service';
+import {DatepickerModule} from 'ng2-bootstrap';
 
 @NgModule({
     imports: [
         BrowserModule,
+        DatepickerModule.forRoot(),
         HttpModule,
         FormsModule,
         ReactiveFormsModule,
@@ -42,14 +49,19 @@ import {EmployeeListComponent} from './employees/components/employee-list/employ
         EmployeeListComponent,
         EmployeeSingleComponent,
         EmploymentHistoryComponent,
+        VacancyListComponent,
+        VacancyCreateComponent,
+        VacancyCreateForm,
     ],
     providers: [
         DepartmentService,
         EmployeeService,
         EmploymentService,
         MessageService,
+        PositionService,
         RequestService,
         ResponseService,
+        VacancyService,
     ],
     bootstrap: [AppComponent]
 })

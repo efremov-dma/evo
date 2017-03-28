@@ -1,0 +1,4 @@
+<div *ngIf="department && positions">
+    <h2>Create vacancy for {{ department.name }}</h2>
+    <vacancy-create-form [department]="department" [positions]="positions"></vacancy-create-form>
+</div>

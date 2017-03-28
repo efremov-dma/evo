@@ -5,6 +5,8 @@ import {EmployeeSingleComponent} from './employees/components/employee-single/em
 import {DepartmentCreateComponent} from './departments/components/department-create/department-create.component';
 import {DepartmentEditComponent} from './departments/components/department-edit/department-edit.component';
 import {EmployeeListComponent} from './employees/components/employee-list/employee-list.component';
+import {VacancyListComponent} from './vacancies/components/vacancy-list/vacacny-list.component';
+import {VacancyCreateComponent} from './vacancies/components/vacancy-create/vacancy-create.component';
 
 export const ROUTES: Routes = [
     {path: '', component: DepartmentListComponent},
@@ -17,6 +19,10 @@ export const ROUTES: Routes = [
             {path: '', component: DepartmentSingleComponent},
             {path: 'edit', component: DepartmentEditComponent},
             {path: 'employees', component: EmployeeListComponent},
+            {path: 'vacancies', children: [
+                {path: '', component: VacancyListComponent},
+                {path: 'new', component: VacancyCreateComponent},
+            ]},
         ]}
     ]},
 
