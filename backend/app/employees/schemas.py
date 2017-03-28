@@ -8,14 +8,15 @@ from app.errors.exceptions import NotFound
 from app.positions.models import Position
 from app.schemas import ModelSchema
 from app.vacancies.models import Vacancy
+from app.validators import not_blank, phone_number
 
 
 class EmployeeSchema(ModelSchema):
-    first_name = fields.Str(required=True, validate=[validate.Length(max=255)])
-    last_name = fields.Str(required=True, validate=[validate.Length(max=255)])
+    first_name = fields.Str(required=True, validate=[not_blank, validate.Length(max=255)])
+    last_name = fields.Str(required=True, validate=[not_blank, validate.Length(max=255)])
     birth_date = fields.Date(required=True)
     email = fields.Email(required=True)
-    phone = fields.Str(required=True)
+    phone = fields.Str(required=True, validate=[phone_number])
     department_id = fields.UUID(load_only=True)
     position_id = fields.UUID(required=True, load_only=True)
     vacancy_id = fields.UUID(required=True, load_only=True)
@@ -48,5 +49,3 @@ class EmployeeSchema(ModelSchema):
             Vacancy.get_or_404(vacancy_id.hex)
         except NotFound:
             raise ValidationError('Vacancy does not exist.')
-
-
