@@ -1,8 +1,10 @@
+from flask import request
 from marshmallow import ValidationError
 from marshmallow import fields, validate
 from marshmallow import validates
 
 from app.departments.models import Department
+from app.employees.models import Employee
 from app.employments.models import Employment
 from app.errors.exceptions import NotFound
 from app.positions.models import Position
@@ -49,3 +51,13 @@ class EmployeeSchema(ModelSchema):
             Vacancy.get_or_404(vacancy_id.hex)
         except NotFound:
             raise ValidationError('Vacancy does not exist.')
+
+    @validates('email')
+    def validate_email(self, email):
+        if 'id' not in request.view_args and Employee.get_by(email=email):
+            raise ValidationError('Employee with such email already exist.')
+
+    @validates('phone')
+    def validate_phone(self, phone):
+        if 'id' not in request.view_args and Employee.get_by(phone=phone):
+            raise ValidationError('Employee with such phone already exist.')
