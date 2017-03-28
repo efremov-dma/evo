@@ -1,4 +1,12 @@
 <div *ngIf="employee">
+    <div class="text-right">
+        <div class="btn-group">
+            <a [routerLink]="['/employees', employee.id]" class="btn btn-default">
+                Edit
+            </a>
+        </div>
+    </div>
+
     <h2>{{ employee.firstName }} {{ employee.lastName }}</h2>
 
     <div class="row">
