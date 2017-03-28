@@ -60,17 +60,15 @@ class EmployeeSingle(ReadUpdateDeleteView):
         department = Department.get_or_404(request.json.pop('department_id'))
         employee = self.model.get_or_404(id)
 
-        new_employment = Employment(
-            employee=employee,
-            position=position,
-            department=department,
-            start_date=datetime.now())
-
         curr_employment = employee.current_employment
 
         # Set new employment for currently unemployed employee.
         if not curr_employment:
-            db.session.add(new_employment)
+            new_employment = Employment.create(
+                position=position,
+                department=department,
+                employee=employee,
+                start_date=datetime.now())
             db.session.commit()
             employee.current_employment_id = new_employment.id
 
@@ -81,10 +79,14 @@ class EmployeeSingle(ReadUpdateDeleteView):
             # Unset department head.
             if curr_employment.department_id != department.id and curr_employment.department.head_id == employee.id:
                 curr_employment.department.head_id = None
-            # Save new employment to db.
-            db.session.add(new_employment)
-            db.session.commit()
+
             # Set new employment as current.
+            new_employment = Employment.create(
+                position=position,
+                department=department,
+                employee=employee,
+                start_date=datetime.now())
+            db.session.commit()
             employee.current_employment_id = new_employment.id
 
         # Update attributes.
