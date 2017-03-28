@@ -32,6 +32,28 @@ export class PositionService {
                 .catch(errors => reject(errors));
         });
     }
+    
+    post(data: any): Promise<Position> {
+        const url = `${this.baseUrl}/`;
+
+        return new Promise((resolve, reject) => {
+            this.requestSrv
+                .post(url, data)
+                .then(response => resolve(Position.newFromResponse(response)))
+                .catch(errors => reject(errors));
+        });
+    }
+
+    put(id: string, data: any): Promise<Position> {
+        const url = `${this.baseUrl}/${id}`;
+
+        return new Promise((resolve, reject) => {
+            this.requestSrv
+                .put(url, data)
+                .then(response => resolve(Position.newFromResponse(response)))
+                .catch(errors => reject(errors));
+        });
+    }
 
     delete(id: string): Promise<Position> {
         const url = `${this.baseUrl}/${id}`;
