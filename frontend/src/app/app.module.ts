@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule}  from '@angular/platform-browser';
-import {ToastyModule} from 'ng2-toasty';
 import {AppComponent} from './app.component';
 import {DepartmentListComponent} from './departments/components/department-list/department-list.component';
 import {DepartmentService} from './departments/services/department.service';
@@ -40,6 +39,7 @@ import {PositionCreateForm} from './positions/forms/position-create/position-cre
 import {PositionEditComponent} from './positions/components/position-edit/position-edit.component';
 import {PositionEditForm} from './positions/forms/position-edit/position-edit.form';
 import {PositionSingleComponent} from './positions/components/position-single/position-single.component';
+import {ToasterModule} from 'angular2-toaster';
 
 @NgModule({
     imports: [
@@ -49,7 +49,7 @@ import {PositionSingleComponent} from './positions/components/position-single/po
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot(ROUTES, {useHash: false}),
-        ToastyModule.forRoot(),
+        ToasterModule,
     ],
     declarations: [
         AppComponent,

@@ -1,28 +1,19 @@
 import {Injectable} from '@angular/core';
-import {ToastyService, ToastyConfig} from 'ng2-toasty';
+import {ToasterService} from 'angular2-toaster';
 
 
 @Injectable()
 export class MessageService {
 
     constructor(
-        private toastySrv: ToastyService,
-        private toastyConfig: ToastyConfig
-    ) {
-        this.initDefaultConfig();
-    }
+        private toasterSrv: ToasterService
+    ) {}
 
     success(msg: string) {
-        this.toastySrv.success(msg);
+        this.toasterSrv.pop('success', msg);
     }
 
     error(msg: string) {
-        this.toastySrv.error(msg);
+        this.toasterSrv.pop('error', msg);
     }
-
-
-    private initDefaultConfig() {
-         this.toastyConfig.theme = 'bootstrap';
-    }
-
 }
