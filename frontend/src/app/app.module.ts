@@ -31,7 +31,7 @@ import {VacancyEditComponent} from './vacancies/components/vacancy-edit/vacancy-
 import {VacancyEditForm} from './vacancies/forms/vacancy-edit/vacancy-edit.form';
 import {VacancySingleComponent} from './vacancies/components/vacancy-single/vacancy-single.component';
 import {VacancyCloseComponent} from './vacancies/components/vacancy-close/vacancy-close.component';
-import {EmployeeCreateForm} from './employees/components/employee-create/employee-create.form';
+import {EmployeeCreateForm} from './employees/forms/employee-create/employee-create.form';
 
 @NgModule({
     imports: [
