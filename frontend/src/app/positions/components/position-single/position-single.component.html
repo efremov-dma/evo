@@ -1,0 +1,16 @@
+<div *ngIf="position">
+
+    <div class="text-right">
+        <div class="btn-group">
+            <a [routerLink]="['/positions', position.id, 'edit']" class="btn btn-default">
+                Edit
+            </a>
+        </div>
+    </div>
+
+    <h2>{{ position.name }}</h2>
+
+    <div class="description">
+        {{ position.description }}
+    </div>
+</div>

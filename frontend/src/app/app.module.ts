@@ -39,6 +39,7 @@ import {PositionCreateComponent} from './positions/components/position-create/po
 import {PositionCreateForm} from './positions/forms/position-create/position-create.form';
 import {PositionEditComponent} from './positions/components/position-edit/position-edit.component';
 import {PositionEditForm} from './positions/forms/position-edit/position-edit.form';
+import {PositionSingleComponent} from './positions/components/position-single/position-single.component';
 
 @NgModule({
     imports: [
@@ -69,6 +70,7 @@ import {PositionEditForm} from './positions/forms/position-edit/position-edit.fo
         PositionEditComponent,
         PositionEditForm,
         PositionListComponent,
+        PositionSingleComponent,
         VacancyListComponent,
         VacancyCreateComponent,
         VacancyCreateForm,

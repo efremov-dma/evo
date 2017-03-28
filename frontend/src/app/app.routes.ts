@@ -14,6 +14,7 @@ import {EmployeeEditComponent} from './employees/components/employee-edit/employ
 import {PositionListComponent} from './positions/components/position-list/position-list.component';
 import {PositionCreateComponent} from './positions/components/position-create/position-create.component';
 import {PositionEditComponent} from './positions/components/position-edit/position-edit.component';
+import {PositionSingleComponent} from './positions/components/position-single/position-single.component';
 
 export const ROUTES: Routes = [
     {path: '', component: DepartmentListComponent},
@@ -58,6 +59,7 @@ export const ROUTES: Routes = [
         {path: '', component: PositionListComponent},
         {path: 'new', component: PositionCreateComponent},
         {path: ':positionId', children: [
+            {path: '', component: PositionSingleComponent},
             {path: 'edit', component: PositionEditComponent}
         ]}
     ]},
