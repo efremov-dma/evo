@@ -75,6 +75,18 @@ export class DepartmentSingleComponent implements OnInit, OnDestroy {
         }
     }
 
+    deleteDepartment() {
+        this.departmentSrv
+            .delete(this.department.id)
+            .then(() => {
+                this.msgSrv.success(`Department ${this.department.name} successfully deleted.`);
+                this.router.navigate(['/departments']);
+            })
+            .catch((errors: ResponseError[]) => {
+                errors.forEach(error => this.msgSrv.error(error.detail))
+            });
+    }
+
     ngOnDestroy() {
         this.sub.unsubscribe();
     }

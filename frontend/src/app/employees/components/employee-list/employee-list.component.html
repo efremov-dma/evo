@@ -1,3 +1,11 @@
+<div class="text-right">
+    <div class="btn-group">
+        <a [routerLink]="['/departments', params.departmentId]" class="btn btn-default">
+            Department
+        </a>
+    </div>
+</div>
+
 <h2>Department Employees</h2>
 
 <div *ngIf="employees" class="list">

@@ -1,4 +1,12 @@
 <div *ngIf="vacancy && positions">
+    <div class="text-right">
+        <div class="btn-group">
+            <a [routerLink]="['/departments', vacancy.department.id, 'vacancies']" class="btn btn-default">
+                Vacancies
+            </a>
+        </div>
+    </div>
+
     <h2>Close Vacancy</h2>
     <employee-create-form [vacancy]="vacancy" [positions]="positions"></employee-create-form>
 </div>

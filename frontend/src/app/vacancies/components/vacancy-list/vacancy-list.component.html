@@ -1,11 +1,25 @@
+<div class="text-right">
+    <div class="btn-group">
+        <a [routerLink]="['/departments', params.departmentId]" class="btn btn-default">
+            Department
+        </a>
+        <a [routerLink]="['/departments', params.departmentId, 'vacancies', 'new']" class="btn btn-default">
+            Create New Vacancy
+        </a>
+    </div>
+</div>
+
 <h2>Department Vacancies</h2>
 
 <div *ngIf="vacancies" class="list">
     <div *ngFor="let vacancy of vacancies" class="item row">
-        <div class="col-xs-8">
+        <div class="col-xs-6">
             <a [routerLink]="['/vacancies', vacancy.id]">
                 {{ vacancy.position.name }}
             </a>
+        </div>
+        <div class="col-xs-2">
+            {{ vacancy.openingDate|date:'dd.MM.y' }}
         </div>
         <div class="col-xs-4 text-right">
             <a [routerLink]="['/vacancies', vacancy.id, 'edit']" class="btn btn-xs btn-default">Edit</a>
@@ -13,10 +27,4 @@
             <a (click)="deleteVacancy(vacancy)" class="btn btn-xs btn-danger">Delete</a>
         </div>
     </div>
-</div>
-
-<div class="actions">
-    <a [routerLink]="['/departments', params.departmentId, 'vacancies', 'new']" class="btn btn-default">
-        Create New Vacancy
-    </a>
 </div>

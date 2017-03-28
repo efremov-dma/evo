@@ -1,4 +1,21 @@
 <div *ngIf="vacancy">
+    <div class="text-right">
+        <div class="btn-group">
+            <a [routerLink]="['/departments', vacancy.department.id, 'vacancies']" class="btn btn-default">
+                Vacancies
+            </a>
+            <a [routerLink]="['/vacancies', vacancy.id, 'edit']" class="btn btn-default">
+                Edit
+            </a>
+            <a [routerLink]="['/vacancies', vacancy.id, 'close']" class="btn btn-default">
+                Close
+            </a>
+            <a (click)="deleteVacancy()" class="btn btn-danger">
+                Delete
+            </a>
+        </div>
+    </div>
+
     <h2>Vacancy Info</h2>
 
     <div class="row">
@@ -36,17 +53,4 @@
             {{ (vacancy.closingDate|date:'dd.MM.y') || '-' }}
         </div>
     </div>
-
-    <div class="actions">
-        <a [routerLink]="['/vacancies', vacancy.id, 'edit']" class="btn btn-default">
-            Edit
-        </a>
-        <a [routerLink]="['/vacancies', vacancy.id, 'close']" class="btn btn-default">
-            Close
-        </a>
-        <a (click)="deleteVacancy()" class="btn btn-danger">
-            Delete
-        </a>
-    </div>
-
 </div>

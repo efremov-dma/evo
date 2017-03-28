@@ -1,4 +1,21 @@
 <div *ngIf="department">
+    <div class="text-right">
+        <div class="btn-group">
+            <a [routerLink]="['/departments', department.id, 'employees']" class="btn btn-default">
+                Employees
+            </a>
+            <a [routerLink]="['/departments', department.id, 'vacancies']" class="btn btn-default">
+                Vacancies
+            </a>
+            <a [routerLink]="['/departments', department.id, 'edit']" class="btn btn-default">
+                Edit
+            </a>
+            <a (click)="deleteDepartment()" class="btn btn-danger">
+                Delete
+            </a>
+        </div>
+    </div>
+
     <h2>{{ department.name }}</h2>
 
     <div class="description">
@@ -12,18 +29,5 @@
                 {{ head.firstName }} {{ head.lastName }}
             </a>
         </div>
-    </div>
-
-    <!-- Actions -->
-    <div class="actions">
-        <a [routerLink]="['/departments', department.id, 'employees']" class="btn btn-default">
-            Employees
-        </a>
-        <a [routerLink]="['/departments', department.id, 'vacancies']" class="btn btn-default">
-            Vacancies
-        </a>
-        <a [routerLink]="['/departments', department.id, 'edit']" class="btn btn-default">
-            Edit
-        </a>
     </div>
 </div>
