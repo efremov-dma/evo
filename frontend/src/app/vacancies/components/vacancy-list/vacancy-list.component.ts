@@ -32,7 +32,7 @@ export class VacancyListComponent implements OnInit {
 
     ngOnInit(): void {
         this.initParams();
-        this.getVacancies();
+        this.initVacancies();
     }
 
     private initParams() {
@@ -43,9 +43,9 @@ export class VacancyListComponent implements OnInit {
         });
     }
 
-    private getVacancies(): void {
+    private initVacancies() {
         this.vacancySrv
-            .list(this.params.departmentId)
+            .list(this.params.departmentId, true)
             .then(vacancies => this.vacancies = vacancies)
             .catch((errors: ResponseError[]) => {
                 errors.forEach(error => this.msgSrv.error(error.detail))

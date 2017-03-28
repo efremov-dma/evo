@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import request
 
 from app import response
@@ -11,12 +13,16 @@ class VacancyList(ListCreateView):
     schema = VacancySchema
 
     def get(self):
-        if 'department_id' in request.args:
-            data = self.model.filter_by(department_id=request.args['department_id'])
-        else:
-            data = self.model.query.all()
+        filters = []
 
-        return response.success(data=data, schema=self.schema, many=True)
+        if 'department_id' in request.args:
+            filters.append(self.model.department_id == request.args['department_id'])
+
+        if 'open' in request.args:
+            filters.append(self.model.opening_date > datetime.now())
+            filters.append(self.model.closing_date == None)
+
+        return response.success(data=self.model.query.filter(*filters), schema=self.schema, many=True)
 
 
 class VacancySingle(ReadUpdateDeleteView):

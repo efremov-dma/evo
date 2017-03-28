@@ -12,13 +12,17 @@ export class VacancyService {
         private requestSrv: RequestService
     ) {}
 
-    list(departmentId?: string): Promise<Vacancy[]> {
+    list(departmentId?: string, open?: boolean): Promise<Vacancy[]> {
         const url = `${this.baseUrl}/`;
 
         let params = new URLSearchParams();
 
         if (departmentId) {
             params.append('department_id', departmentId);
+        }
+
+        if (open) {
+            params.append('open', 'true');
         }
 
         return new Promise((resolve, reject) => {
