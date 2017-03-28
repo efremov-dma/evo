@@ -30,6 +30,8 @@ import {DatepickerModule} from 'ng2-bootstrap';
 import {VacancyEditComponent} from './vacancies/components/vacancy-edit/vacancy-edit.component';
 import {VacancyEditForm} from './vacancies/forms/vacancy-edit/vacancy-edit.form';
 import {VacancySingleComponent} from './vacancies/components/vacancy-single/vacancy-single.component';
+import {VacancyCloseComponent} from './vacancies/components/vacancy-close/vacancy-close.component';
+import {EmployeeCreateForm} from './employees/components/employee-create/employee-create.form';
 
 @NgModule({
     imports: [
@@ -49,6 +51,7 @@ import {VacancySingleComponent} from './vacancies/components/vacancy-single/vaca
         DepartmentEditForm,
         DepartmentListComponent,
         DepartmentSingleComponent,
+        EmployeeCreateForm,
         EmployeeListComponent,
         EmployeeSingleComponent,
         EmploymentHistoryComponent,
@@ -57,6 +60,7 @@ import {VacancySingleComponent} from './vacancies/components/vacancy-single/vaca
         VacancyCreateForm,
         VacancyEditComponent,
         VacancyEditForm,
+        VacancyCloseComponent,
         VacancySingleComponent,
     ],
     providers: [

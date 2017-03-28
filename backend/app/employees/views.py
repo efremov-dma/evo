@@ -1,9 +1,13 @@
+from datetime import datetime
+
 from flask import request
 
 from app import response, db
 from app.employees.models import Employee
 from app.employees.schemas import EmployeeSchema
 from app.employments.models import Employment
+from app.positions.models import Position
+from app.vacancies.models import Vacancy
 from app.views import ListCreateView, ReadUpdateDeleteView, BaseView, validate_id
 
 
@@ -20,6 +24,27 @@ class EmployeeList(ListCreateView):
             data = self.model.query.all()
 
         return response.success(data=data, schema=self.schema, many=True)
+
+    def post(self):
+        self._validate_schema()
+
+        position = Position.get_or_404(request.json.pop('position_id'))
+
+        vacancy = Vacancy.get_or_404(request.json.pop('vacancy_id'))
+        vacancy.closing_date = datetime.now()
+
+        employee = self.model.create(**request.json)
+        employment = Employment.create(
+            employee=employee,
+            position=position,
+            start_date=datetime.now(),
+            department=vacancy.department)
+        db.session.commit()
+
+        employee.current_employment_id = employment.id
+        db.session.commit()
+
+        return response.success(data=employee, schema=self.schema)
 
 
 class EmployeeSingle(ReadUpdateDeleteView):

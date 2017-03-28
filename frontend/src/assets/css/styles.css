@@ -1,16 +1,21 @@
 body,
 a {
-  color: rgb(29, 35, 38);
+    color: rgb(29, 35, 38);
 }
 
 a,
 a:hover {
-  text-decoration: none;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .list .item {
-  padding: .5em;
-  margin-bottom: .5em;
-  border-radius: .3em;
-  box-shadow: 0 0 0 1px rgba(29, 35, 38, 0.3)
+    border-bottom: 1px solid rgba(29, 35, 38, 0.3);
+    margin-bottom: .5em;
+    padding-bottom: .5em;
+    padding-top: .5em;
+}
+
+.list .item:last-child {
+    border-bottom: none;
 }

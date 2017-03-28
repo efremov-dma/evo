@@ -10,13 +10,20 @@ db = SQLAlchemy()
 db.init_app(app)
 Migrate(app, db)
 
-from . import errors
-from . import employments
-from . import employees
-from . import departments
-from . import positions
-from . import vacancies
-from . import views
+from app import errors
+from app import views
+
+from app.employees import models
+from app.departments import models
+from app.employments import models
+from app.positions import models
+from app.vacancies import models
+
+from app.employees import urls
+from app.departments import urls
+from app.employments import urls
+from app.positions import urls
+from app.vacancies import urls
 
 from app.departments import blueprint as department_blueprint
 from app.employees import blueprint as employee_blueprint

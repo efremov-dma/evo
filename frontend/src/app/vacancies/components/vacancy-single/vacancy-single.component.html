@@ -41,7 +41,7 @@
         <a [routerLink]="['/vacancies', vacancy.id, 'edit']" class="btn btn-default">
             Edit
         </a>
-        <a href="#" class="btn btn-default">
+        <a [routerLink]="['/vacancies', vacancy.id, 'close']" class="btn btn-default">
             Close
         </a>
         <a (click)="deleteVacancy()" class="btn btn-danger">

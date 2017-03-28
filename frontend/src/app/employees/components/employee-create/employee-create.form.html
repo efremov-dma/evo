@@ -1,0 +1,73 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+
+    <!-- First Name -->
+    <div class="form-group">
+        <label for="first-name">First Name</label>
+        <input
+                class="form-control"
+                formControlName="first_name"
+                id="first-name"
+                type="text">
+    </div>
+
+    <!-- Last Name -->
+    <div class="form-group">
+        <label for="last-name">Last Name</label>
+        <input
+                class="form-control"
+                formControlName="last_name"
+                id="last-name"
+                type="text">
+    </div>
+
+    <!-- E-mail -->
+    <div class="form-group">
+        <label for="email">E-mail</label>
+        <input
+                class="form-control"
+                formControlName="email"
+                id="email"
+                type="email">
+    </div>
+
+    <!-- Phone -->
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+                class="form-control"
+                formControlName="phone"
+                id="phone"
+                type="text">
+    </div>
+
+    <!-- Position -->
+    <div class="form-group">
+        <label for="position">Position</label>
+        <select
+                class="form-control"
+                formControlName="position_id"
+                id="position">
+            <option
+                    *ngFor="let position of positions"
+                    [ngValue]="position.id">
+                    {{ position.name }}
+            </option>
+        </select>
+    </div>
+
+    <!-- Birth Date -->
+    <div class="form-group">
+        <label for="birth-date">Birth Date</label>
+        <datepicker
+                formControlName="birth_date"
+                id="birth-date">
+        </datepicker>
+    </div>
+
+    <!-- Submit -->
+    <button
+            class="btn btn-default"
+            type="submit">
+        Submit
+    </button>
+</form>

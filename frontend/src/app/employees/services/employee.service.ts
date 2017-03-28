@@ -40,6 +40,17 @@ export class EmployeeService {
         });
     }
 
+    post(data: any): Promise<Employee> {
+        const url = `${this.baseUrl}/`;
+
+        return new Promise((resolve, reject) => {
+            this.requestSrv
+                .post(url, data)
+                .then(response => resolve(Employee.newFromResponse(response)))
+                .catch(errors => reject(errors));
+        });
+    }
+
     dismiss(id: string): Promise<Employee> {
         const url = `${this.baseUrl}/${id}/dismiss`;
 
