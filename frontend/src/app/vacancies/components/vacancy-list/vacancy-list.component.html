@@ -3,9 +3,9 @@
 <div *ngIf="vacancies" class="list">
     <div *ngFor="let vacancy of vacancies" class="item row">
         <div class="col-xs-8">
-            <!--<a [routerLink]="['/vacancies', vacancy.id]">-->
+            <a [routerLink]="['/vacancies', vacancy.id]">
                 {{ vacancy.position.name }}
-            <!--</a>-->
+            </a>
         </div>
         <div class="col-xs-4 text-right">
             <a [routerLink]="['/vacancies', vacancy.id, 'edit']" class="btn btn-xs btn-default">Edit</a>

@@ -43,7 +43,7 @@ export class VacancyEditForm implements OnInit {
     initForm() {
         this.form = this.fb.group({
           position_id: [this.vacancy.position.id],
-          opening_date: [this.vacancy.openingDate],
+          opening_date: [new Date(this.vacancy.openingDate)],
         });
     }
 

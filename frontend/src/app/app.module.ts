@@ -29,6 +29,7 @@ import {PositionService} from './positions/services/position.service';
 import {DatepickerModule} from 'ng2-bootstrap';
 import {VacancyEditComponent} from './vacancies/components/vacancy-edit/vacancy-edit.component';
 import {VacancyEditForm} from './vacancies/forms/vacancy-edit/vacancy-edit.form';
+import {VacancySingleComponent} from './vacancies/components/vacancy-single/vacancy-single.component';
 
 @NgModule({
     imports: [
@@ -56,6 +57,7 @@ import {VacancyEditForm} from './vacancies/forms/vacancy-edit/vacancy-edit.form'
         VacancyCreateForm,
         VacancyEditComponent,
         VacancyEditForm,
+        VacancySingleComponent,
     ],
     providers: [
         DepartmentService,
