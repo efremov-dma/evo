@@ -5,7 +5,7 @@ import {EmployeeSingleComponent} from './employees/components/employee-single/em
 import {DepartmentCreateComponent} from './departments/components/department-create/department-create.component';
 import {DepartmentEditComponent} from './departments/components/department-edit/department-edit.component';
 import {EmployeeListComponent} from './employees/components/employee-list/employee-list.component';
-import {VacancyListComponent} from './vacancies/components/vacancy-list/vacacny-list.component';
+import {VacancyListComponent} from './vacancies/components/vacancy-list/vacancy-list.component';
 import {VacancyCreateComponent} from './vacancies/components/vacancy-create/vacancy-create.component';
 import {VacancyEditComponent} from './vacancies/components/vacancy-edit/vacancy-edit.component';
 
