@@ -1,4 +1,5 @@
 from flask import request
+from sqlalchemy import desc
 
 from app import response
 from app.employments.models import Employment
@@ -11,10 +12,12 @@ class EmploymentList(ListCreateView):
     schema = EmploymentSchema
 
     def get(self):
+        filters = []
+
         if 'employee_id' in request.args:
-            data = self.model.filter_by(employee_id=request.args['employee_id'])
-        else:
-            data = self.model.query.all()
+            filters.append(self.model.employee_id == request.args['employee_id'])
+
+        data = self.model.query.order_by(desc(self.model.created_at)).filter(*filters)
 
         return response.success(data=data, schema=self.schema, many=True)
 

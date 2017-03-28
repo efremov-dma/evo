@@ -2,6 +2,7 @@ from uuid import UUID
 
 from flask import request
 from flask.views import MethodView
+from sqlalchemy import desc
 
 from app import db, app
 from app import response
@@ -63,7 +64,7 @@ class ListCreateView(BaseView):
     methods = ['GET', 'POST']
 
     def get(self):
-        data = self.model.query.all()
+        data = self.model.query.order_by(desc(self.model.created_at)).all()
 
         return response.success(data=data, schema=self.schema, many=True)
 

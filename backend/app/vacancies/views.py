@@ -21,7 +21,9 @@ class VacancyList(ListCreateView):
         if 'open' in request.args:
             filters.append(self.model.closing_date == None)
 
-        return response.success(data=self.model.query.filter(*filters), schema=self.schema, many=True)
+        data = self.model.query.order_by(self.model.opening_date).filter(*filters)
+
+        return response.success(data=data, schema=self.schema, many=True)
 
 
 class VacancySingle(ReadUpdateDeleteView):
