@@ -2,6 +2,7 @@ from marshmallow import ValidationError
 from marshmallow import fields, validate
 from marshmallow import validates
 
+from app.departments.models import Department
 from app.employments.models import Employment
 from app.errors.exceptions import NotFound
 from app.positions.models import Position
@@ -15,9 +16,17 @@ class EmployeeSchema(ModelSchema):
     birth_date = fields.Date(required=True)
     email = fields.Email(required=True)
     phone = fields.Str(required=True)
+    department_id = fields.UUID(load_only=True)
     position_id = fields.UUID(required=True, load_only=True)
     vacancy_id = fields.UUID(required=True, load_only=True)
     current_employment_id = fields.UUID(allow_none=True, dump_only=True)
+
+    @validates('department_id')
+    def validate_department_id(self, department_id):
+        try:
+            Department.get_or_404(department_id.hex)
+        except NotFound:
+            raise ValidationError('Department does not exist.')
 
     @validates('current_employment_id')
     def validate_employment_id(self, employment_id):

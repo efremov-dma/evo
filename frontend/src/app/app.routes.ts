@@ -10,6 +10,7 @@ import {VacancyCreateComponent} from './vacancies/components/vacancy-create/vaca
 import {VacancyEditComponent} from './vacancies/components/vacancy-edit/vacancy-edit.component';
 import {VacancySingleComponent} from './vacancies/components/vacancy-single/vacancy-single.component';
 import {VacancyCloseComponent} from './vacancies/components/vacancy-close/vacancy-close.component';
+import {EmployeeEditComponent} from './employees/components/employee-edit/employee-edit.component';
 
 export const ROUTES: Routes = [
     {path: '', component: DepartmentListComponent},
@@ -35,7 +36,8 @@ export const ROUTES: Routes = [
     // Employees
     {path: 'employees', children: [
         {path: ':employeeId', children: [
-            {path: '', component: EmployeeSingleComponent}
+            {path: '', component: EmployeeSingleComponent},
+            {path: 'edit', component: EmployeeEditComponent}
         ]}
     ]},
 

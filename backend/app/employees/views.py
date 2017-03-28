@@ -3,6 +3,7 @@ from datetime import datetime
 from flask import request
 
 from app import response, db
+from app.departments.models import Department
 from app.employees.models import Employee
 from app.employees.schemas import EmployeeSchema
 from app.employments.models import Employment
@@ -50,6 +51,47 @@ class EmployeeList(ListCreateView):
 class EmployeeSingle(ReadUpdateDeleteView):
     model = Employee
     schema = EmployeeSchema
+
+    @validate_id
+    def put(self, id):
+        self._validate_schema(partial=True)
+
+        position = Position.get_or_404(request.json.pop('position_id'))
+        department = Department.get_or_404(request.json.pop('department_id'))
+        employee = self.model.get_or_404(id)
+
+        new_employment = Employment(
+            employee=employee,
+            position=position,
+            department=department,
+            start_date=datetime.now())
+
+        curr_employment = employee.current_employment
+
+        # Set new employment for currently unemployed employee.
+        if not curr_employment:
+            db.session.add(new_employment)
+            db.session.commit()
+            employee.current_employment_id = new_employment.id
+
+        # If current position or department changed.
+        elif (curr_employment.position_id, curr_employment.department_id) != (position.id, department.id):
+            # Close current employment.
+            curr_employment.end_date = datetime.now()
+            # Unset department head.
+            if curr_employment.department_id != department.id and curr_employment.department.head_id == employee.id:
+                curr_employment.department.head_id = None
+            # Save new employment to db.
+            db.session.add(new_employment)
+            db.session.commit()
+            # Set new employment as current.
+            employee.current_employment_id = new_employment.id
+
+        # Update attributes.
+        employee.update(request.json)
+        db.session.commit()
+
+        return response.success(data=employee, schema=self.schema)
 
 
 class EmployeeDismiss(BaseView):
