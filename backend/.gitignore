@@ -1,1 +1,4 @@
+log
+config/nginx.conf
+config/uwsgi.ini
 app/settings/local.py
